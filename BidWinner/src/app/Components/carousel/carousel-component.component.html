@@ -1,0 +1,11 @@
+<div class="inner-content h-96">
+  <nz-carousel nzAutoPlay>
+    <div
+      nz-carousel-content
+      *ngFor="let index of array"
+      class="text-center h-40 bg-blue-800 text-white overflow-hidden"
+    >
+      <img class="object-cover w-full h-full" src="{{ index }}" alt="" />
+    </div>
+  </nz-carousel>
+</div>
