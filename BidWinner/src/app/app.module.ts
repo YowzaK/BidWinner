@@ -32,6 +32,11 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { AuctionsComponent } from './Components/auctions/auctions.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+
+import { AdminLandingComponent } from './Admin/Components/admin-landing/admin-landing.component';
 
 
 
@@ -39,7 +44,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, CarouselComponent, FeaturedItemsComponent, HeaderNavbarComponent, LandingPageComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, CarouselComponent, FeaturedItemsComponent, HeaderNavbarComponent, LandingPageComponent, LoginComponent, RegisterComponent, UserProfileComponent, AuctionsComponent, AboutUsComponent,  AdminLandingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -60,7 +65,7 @@ registerLocaleData(en);
     NzSkeletonModule,
     ReactiveFormsModule,
     NzButtonModule,
-    NzCheckboxModule
+    NzCheckboxModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

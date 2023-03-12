@@ -16,6 +16,7 @@
             nz-input
             formControlName="email"
             placeholder="Enter your Email"
+            [(ngModel)]="form.email"
           />
         </nz-input-group>
       </nz-form-control>
@@ -28,6 +29,7 @@
             nz-input
             formControlName="password"
             placeholder="Password"
+            [(ngModel)]="form.password"
           />
         </nz-input-group>
       </nz-form-control>
@@ -37,3 +39,4 @@
     <a routerLink="/register">register now!</a>
   </form>
 </div>
+

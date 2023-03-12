@@ -10,15 +10,26 @@
     />
   </div>
   <ul nz-menu nzTheme="dark" nzMode="horizontal" class="bg-topbar">
-    <a nz-menu-item>Auctions</a>
-    <a nz-menu-item>About Us</a>
-    <a class="float-right" nz-menu-item nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+    <a nz-menu-item routerLink="/auctions">Auctions</a>
+    <a nz-menu-item routerLink="/aboutUs">About Us</a>
+    <a
+      class="float-right"
+      nz-menu-item
+      nz-dropdown
+      nzTrigger="click"
+      [nzDropdownMenu]="menu"
+    >
       <span nz-icon nzType="user" nzTheme="outline"></span
     ></a>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <a nz-menu-item routerLink="/register" >Register</a>
-        <a nz-menu-item routerLink="/login">Login</a>
+        <ng-container *ngIf="!isAuthenticated()">
+          <a nz-menu-item routerLink="/register">Register</a>
+          <a nz-menu-item routerLink="/login">Login</a>
+        </ng-container>
+        <ng-container *ngIf="isAuthenticated()">
+          <a nz-menu-item routerLink="/userProfile">My Profile</a>
+        </ng-container>
       </ul>
     </nz-dropdown-menu>
   </ul>
