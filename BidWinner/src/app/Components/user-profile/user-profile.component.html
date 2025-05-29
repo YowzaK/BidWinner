@@ -1,0 +1,63 @@
+<div>
+  <div class="pt-10 pb-4 pr-4 pl-4 float-right">
+    <ng-container *ngIf="user.userVerified">
+      <div class="w-20 h-20">
+        <img src="assets/verify.png " class="object-contain" />
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!user.userVerified">
+      <div class="ml-8 pr-9 max-h-16 flex">
+        <button nz-button routerLink="/verifyUser" nzType="primary">
+          Verify
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <div class="flex flex-col pt-4 pb-4 pr-4 pl-10">
+    <p class="text-4xl font-bold">{{ user.userName }}</p>
+    <p class="text-2xl font-bold">{{ user.userCountry }}</p>
+    <p class="text-1xl">{{ user.userAddress }}</p>
+  </div>
+</div>
+<div class="flex">
+  <p class="text-1xl mx-auto font-bold">My Auctions</p>
+</div>
+<div>
+  <nz-content class="bg-cream">
+    <div class="pt-5 pl-5 pb-5 h-max">
+      <ul class="flex flex-wrap flex-row gap-x-5 gap-y-5 justify-center">
+        <ng-container *ngFor="let auction of auctions; let i = index">
+          <li>
+            <nz-card
+              nzHoverable
+              (click)="fullCard(auction.id)"
+              style="width: 300px"
+              [nzCover]="coverTemplate"
+              [nzActions]="[actionSetting]"
+              class="bg-lightpurp"
+            >
+              <nz-card-meta
+                nzTitle="{{ auctions[i].itemName }}"
+                nzDescription="Starting bid: {{
+                  auctions[i].startingBid | currency
+                }}"
+              ></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <div class="w-[18.75rem] h-48 mt-4">
+                <img
+                  class="w-full h-full object-contain"
+                  alt="example"
+                  src="{{ auctions[i].image }}"
+                />
+              </div>
+            </ng-template>
+            <ng-template #actionSetting>
+              <span nz-icon nzType="shopping" nzTheme="twotone"></span>
+            </ng-template>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </nz-content>
+</div>

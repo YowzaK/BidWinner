@@ -1,0 +1,36 @@
+<nz-content class="bg-cream">
+  <div class="pt-5 pl-5 pb-5 h-max">
+    <ul class="flex flex-wrap flex-row gap-x-5 gap-y-5 justify-center">
+      <ng-container *ngFor="let auction of auctions; let i = index">
+        <li>
+          <nz-card
+          (click) ="fullCard(auction.id)"
+            style="width: 300px"
+            [nzCover]="coverTemplate"
+            [nzActions]="[actionSetting]"
+            class="bg-lightpurp"
+            nzHoverable
+          >
+            <nz-card-meta
+              nzTitle="{{ auctions[i].itemName }}"
+              nzDescription="Starting bid: {{
+                auctions[i].startingBid | currency}}"
+            ></nz-card-meta>
+          </nz-card>
+          <ng-template #coverTemplate>
+            <div class="w-[18.75rem] h-48 mt-4">
+              <img
+                class="w-full h-full object-contain"
+                alt="example"
+                src="{{ auctions[i].image }}"
+              />
+            </div>
+          </ng-template>
+          <ng-template #actionSetting>
+            <span nz-icon nzType="shopping" nzTheme="twotone"></span>
+          </ng-template>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nz-content>

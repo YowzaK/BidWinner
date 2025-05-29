@@ -1,0 +1,26 @@
+<nz-content class="bg-cream">
+  <div class="pt-5 pl-5 pb-5 h-max">
+    <ul class="flex flex-wrap justify-evenly">
+      <ng-container *ngFor="let item of items">
+        <li class="w-52 h-60" routerLink="/auction/{{item.id}}">
+          <nz-card nzHoverable [nzCover]="coverTemplate" class="bg-lightpurp">
+            <nz-card-meta
+              nzTitle="{{item.itemName}}"
+              nzDescription="{{item.startingBid | currency}}"
+            ></nz-card-meta>
+          </nz-card>
+          <ng-template #coverTemplate>
+            <div class="w-full h-32 mt-4">
+              <img
+              
+                class="w-full h-full object-contain"
+                alt="example"
+                src="{{ item.image }}"
+              />
+            </div>
+          </ng-template>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nz-content>

@@ -1,0 +1,99 @@
+<form
+  nz-form
+  [formGroup]="auctionForm"
+  class="max-w-2xl pt-10 pl-10 pr-10 pb-10 mt-4 border-solid border-purp border-2 rounded-sm mx-auto bg-cream"
+  (ngSubmit)="submitForm()"
+  
+>
+  <div class="flex justify-center pb-5">
+    <img src="assets/Logo.png" alt="" />
+  </div>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input the Item Name">
+      <input
+        type="text"
+        nz-input
+        formControlName="name"
+        placeholder="Enter Item Name"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input the item Description!">
+      <textarea
+        class="resize-none"
+        rows="4"
+        nz-input
+        type="text"
+        nz-input
+        formControlName="description"
+        placeholder="Enter Item Description"
+      >
+      </textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <a nz-dropdown [nzDropdownMenu]="conditionMenu">
+    {{ item.condition }}
+    <span nz-icon nzType="down"></span>
+  </a>
+  <nz-dropdown-menu #conditionMenu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item (click)="conditionUsed()">Used</li>
+      <li nz-menu-item (click)="conditionNew()">New</li>
+    </ul>
+  </nz-dropdown-menu>
+  <div class="mt-5"></div>
+  <nz-form-item>
+    <a nz-dropdown [nzDropdownMenu]="categoryMenu">
+      {{ item.category }}
+      <span nz-icon nzType="down"></span>
+    </a>
+    <nz-dropdown-menu #categoryMenu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="categoryElectronics()">Electronics</li>
+        <li nz-menu-item (click)="categoryFurniture()">Furniture</li>
+        <li nz-menu-item (click)="categoryOther()">Other</li>
+      </ul>
+    </nz-dropdown-menu>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please enter desired starting bid amount">
+      <input
+        type="number"
+        nz-input
+        formControlName="startingBid"
+        placeholder="starting bid amount"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control
+      nzErrorTip="Please enter the ending date and time of the acution"
+    >
+      <nz-date-picker
+        nzShowTime
+        nzFormat="MM-dd HH:mm:s"
+        formControlName="endingDate"
+        (ngModelChange)="onChange($event)"
+        (nzOnOk)="onOk($event)"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="justify-center">
+    <ngx-dropzone (change)="onSelect($event)">
+      <ngx-dropzone-label>Upload pictures of the item</ngx-dropzone-label>
+      <ngx-dropzone-preview
+        *ngFor="let f of this.images.image"
+        [removable]="true"
+        (removed)="onRemove(f)"
+      >
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </nz-form-item>
+  <div class="mt-10"></div>
+
+  <button nz-button class="w-full mb-4" [nzType]="'primary'">
+    List Auction
+  </button>
+</form>

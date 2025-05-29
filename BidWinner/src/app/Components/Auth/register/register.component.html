@@ -1,0 +1,91 @@
+<div class="flex flex-none justify-center items-center h-screen bg-cream">
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    class="w-96 pt-10 pl-10 pr-10 pb-10 border-solid border-purp border-2 rounded-sm"
+    (ngSubmit)="submitForm()"
+  >
+    <div class="flex justify-center pb-5">
+      <img src="assets/Logo.png" alt="" />
+    </div>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type="text"
+            nz-input
+            formControlName="username"
+            placeholder="Enter your username"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Email!">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type="text"
+            nz-input
+            formControlName="email"
+            placeholder="Enter your Email"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <a nz-dropdown [nzDropdownMenu]="country">
+      {{ user.userCountry }}
+      <span nz-icon nzType="down"></span>
+    </a>
+    <nz-dropdown-menu #country="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="countrySelectedSL()">Sri Lanka</li>
+        <li nz-menu-item (click)="countrySelectedUK()">United Kingdom</li>
+      </ul>
+    </nz-dropdown-menu>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Address">
+        <nz-input-group>
+          <textarea
+            class="resize-none"
+            rows="4"
+            nz-input
+            type="text"
+            formControlName="address"
+            placeholder="Enter your Address"
+          >
+          </textarea>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Password"
+            [(ngModel)]="form.password"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please confirm your password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            nz-input
+            formControlName="confirmPassword"
+            placeholder="Re-enter your password"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="w-full mb-4" [nzType]="'primary'">Register</button>
+    Or
+    <a routerLink="/login">Login now!</a>
+  </form>
+</div>

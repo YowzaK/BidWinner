@@ -1,0 +1,71 @@
+<div class=" rounded-lg border-solid border-purp border-2 shadow-lg mt-4 ml-4 mr-4 mb-4 pt-4 pl-4 pr-4 pb-4 ">
+  <div class="w-full h-80 flex justify-center">
+    <img class="mx-auto object-contain" src="{{ item.image }}" />
+  </div>
+  <div class="flex flex-col pt-5">
+    <p class="font-bold text-2xl mx-auto">{{ item.itemName }}</p>
+    <p class="mx-auto text-lg underline cursor-pointer " (click)="goToUser()" >Sold by: {{ user.userName }}</p>
+  </div>
+  <div class="flex flex-col pt-5 items-center justify-center">
+    <p class="font-bold text-xl mx-auto">Description</p>
+    <p class="text-center mx-auto max-w-md">{{ item.itemDescription }}</p>
+  </div>
+  <div class="flex flex-col pt-5">
+    <p class="font-bold mx-auto">
+      Time left: {{ daysLeft }} days {{ hoursLeft }} hours
+      {{ minutesLeft }} minutes {{ secondsLeft }} seconds
+    </p>
+  </div>
+  <div class="flex flex-col pt-5">
+    <p class="mx-auto">Starting bid: {{ item.startingBid | currency }}</p>
+    <p class="mx-auto">Current bids: {{ item.currentBids }}</p>
+  </div>
+  <ng-container *ngIf="!bidOver">
+    <ng-container *ngIf="!isOwner() && !isbid">
+      <div class="flex pt-8">
+        <input
+          class="max-w-xs mx-auto"
+          nz-input
+          placeholder="Enter bid"
+          [(ngModel)]="placedBid"
+          currencyMask
+          [options]="{ align: 'left' }"
+        />
+      </div>
+      <div class="flex pt-3">
+        <button class="mx-auto" (click)="Bid()" nz-button nzType="primary">
+          Place Bid
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="userLogged">
+    <ng-container *ngIf="isbid">
+      <div class="flex pt-3">
+        <p class="mx-auto">your bid : ${{ bidAmount }}</p>
+      </div>
+    </ng-container>
+  </ng-container>  
+  <ng-container *ngIf="isOwner() && !isbid">
+    <div class="flex pt-3">
+      <p class="mx-auto">Current bidders</p>
+    </div>
+  </ng-container>  
+  <ng-container *ngIf="currentUserWonBid">
+    <div class="flex pt-3">
+      <p class="mx-auto">Auction won by {{ wonUser.userName }}</p>
+    </div>
+    <div class="flex pt-3">
+      <button class="mx-auto" nz-button nzType="primary">
+        Proceed to payment
+      </button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!userLogged">
+    <div class="flex pt-3">
+      <button class="mx-auto"  routerLink="/login" nz-button nzType="primary">
+        login
+      </button>
+    </div>
+  </ng-container>
+</div>

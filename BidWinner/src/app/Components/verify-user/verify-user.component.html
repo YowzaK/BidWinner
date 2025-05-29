@@ -1,0 +1,22 @@
+<div class="flex justify-center mt-24 ">
+  <nz-card
+    nzTitle="Verify User"
+    class="w-96 border-solid border-purp bg-cream border-2 rounded-sm"
+  >
+    <div class="pb-4">
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Upload a picture of your face</ngx-dropzone-label>
+        <ngx-dropzone-preview
+          *ngFor="let f of img"
+          [removable]="true"
+          (removed)="onRemove(f)"
+        >
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+    <button nz-button (click)="submitInformation()" nzType="primary">
+      Verify
+    </button>
+  </nz-card>
+</div>
